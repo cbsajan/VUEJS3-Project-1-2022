@@ -3,7 +3,9 @@ const app = Vue.createApp({
         return {
             state:true,
             inputName:'',
-            names:[]
+            names:[],
+            error:'',
+            showError:false
         }
     },
     methods:{
@@ -12,14 +14,23 @@ const app = Vue.createApp({
             if(this.validate(userName)){
                 this.names.push(userName);
                 this.inputName = '';
-                console.log(this.names)
-
+                this.showError = false;
+                
             } else {
-                console.log('error')
+                this.showError = true;
             }
         },
         validate(value){
-            /////
+            this.error = '';
+
+            if (value === ''){
+                this.error = 'Enter the vaild username'
+                return false
+            }
+            if (this.names.includes(value)){
+                this.error = 'The Name already exists'
+                return false
+            }
             return true
         }
     }
