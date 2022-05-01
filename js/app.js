@@ -8,6 +8,11 @@ const app = Vue.createApp({
             showError:false
         }
     },
+    computed:{
+        isReady(){
+            return this.names.length > 1 
+        }
+    },
     methods:{
         addNameToList(){
             const userName = this.inputName;
@@ -24,14 +29,21 @@ const app = Vue.createApp({
             this.error = '';
 
             if (value === ''){
-                this.error = 'Enter the vaild username'
+                this.error = 'Enter the vaild name'
                 return false
             }
             if (this.names.includes(value)){
-                this.error = 'The Name already exists'
+                this.error = 'The name  is already exists'
                 return false
             }
             return true
+        },
+
+        removeName(index){
+            this.names.splice(index,1)
+        },
+        showResults(){
+            this.state = false
         }
     }
 
