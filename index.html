@@ -33,21 +33,35 @@
           <button @click="addNameToList">Add</button>
         </div>
 
-        <div class="error_label" v-if="showError">{{error}}</div>
+        <div
+          class="error_label animate__animated animate__fadeInDown"
+          v-if="showError"
+        >
+          {{ error }}
+        </div>
+
         <div class="list_of_names">
           <div
             v-for="(name,index) in names"
             :key="name"
             @click="removeName(index)"
+            class="animate__animated animate__fadeIn"
           >
-            {{name}}
+            {{ name }}
           </div>
         </div>
-        <div v-if="isReady">
+
+        <div v-if="isReady" class="animate__animated animate__bounceIn">
           <div class="action_button" @click="showResults">Check the looser</div>
         </div>
       </div>
-      <div id="result" class="container" v-if="!state">show the looser</div>
+      <div
+        id="result"
+        class="container animate__animated animate__fadeIn"
+        v-if="!state"
+      >
+        show the looser
+      </div>
     </div>
   </body>
 
